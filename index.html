@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Evergreen: báo cáo HĐQT</title>
+<style>
+/* VOICE: board memo, calm, numbers first, written for HĐQT and shareholders
+   IDEA: one printed page a chairman reads at the table
+   PICTURE: unit-by-unit profit and loss bars, earners against loss-makers
+   COLOUR and TYPE: Apple light (Ty's standard), green gain / red loss, blue accent; system font
+   LAYOUT: one column to 860px; headline, figures, chart, then sections I–IV, appendix collapsed */
+:root{color-scheme:light;--bg:#F2F2F7;--card:#FFFFFF;--line:#E5E5EA;--ink:#1C1C1E;--ink2:#3C3C43;--ink3:#8E8E93;--green:#248A3D;--red:#D70015;--gfill:#34C759;--rfill:#FF3B30;--blue:#0A64D6}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:clip}
+.wrap{max-width:860px;margin:0 auto;padding:clamp(20px,4vw,48px) max(4vw,14px) 64px}
+.meta{color:var(--ink3);font-size:13px;margin:0 0 10px}
+h1{font-size:clamp(26px,4.4vw,38px);line-height:1.1;margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:21px;line-height:1.25;margin:0 0 12px}
+h3{font-size:16px;margin:18px 0 8px}
+p{margin:0 0 12px;color:var(--ink2)}
+.lede{font-size:17px;color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:clamp(16px,3vw,24px);margin:14px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,138px),1fr));gap:10px;margin:16px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi b{display:block;font-size:clamp(22px,3.4vw,28px);line-height:1.1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi span{display:block;font-size:13px;color:var(--ink2);margin-top:6px}
+.kpi small{display:block;font-size:13px;color:var(--ink3);margin-top:2px}
+.neg{color:var(--red)}.pos{color:var(--green)}
+.rec{border-left:0;background:#EAF2FD;border:1px solid #CFE0F7}
+.rec p{color:var(--ink)}
+.bars{margin:6px 0 0}
+.row{display:grid;grid-template-columns:11em minmax(0,1fr) 5em;align-items:center;gap:10px;padding:5px 0;font-size:14px}
+.row .n{color:var(--ink2)}
+.row .v{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.track{position:relative;height:16px}
+.axis{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--ink3)}
+.bar{position:absolute;top:0;height:16px;border-radius:3px}
+.note{font-size:13px;color:var(--ink3);margin:10px 0 0}
+ul{margin:0;padding-left:1.15em}li{margin:0 0 8px;color:var(--ink2)}li b{color:var(--ink)}
+ol{margin:0;padding-left:1.3em}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink3);font-size:13px}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.scroll{overflow-x:auto}
+.tag{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-size:13px;color:var(--ink2)}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:#C7C7CC}
+.tag.e::before{background:var(--blue)}
+.dec td:first-child{color:var(--ink3);width:2em}
+.hard{font-weight:600;color:var(--ink)}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:14px 0}
+summary{cursor:pointer;font-weight:600;min-height:28px}
+details[open] summary{margin-bottom:10px}
+footer{font-size:13px;color:var(--ink3);margin-top:24px}
+@media(max-width:600px){table{font-size:13px}.row{grid-template-columns:7em minmax(0,1fr) 4.2em;font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:7.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7em;margin-inline-start:-7.5em;color:var(--ink3)}.stack td:empty{display:none}}
+@media print{:root{--bg:#fff;--card:#fff;--ink2:#222;--ink3:#222}.rec{background:#fff}.card,.kpi,details,table,tr{break-inside:avoid}details{display:block}details>*{display:block}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<main class="wrap">
+
+<p class="meta">Gửi HĐQT và cổ đông Công ty Cổ phần Evergreen Đầu tư · Người lập: Trương Quốc Tùng · 26/11/2026 · Kết quả kinh doanh và thuế đến 30/09/2026; chưa có bảng cân đối kế toán</p>
+<h1>Evergreen bán vượt kế hoạch ba năm liền nhưng vẫn lỗ 8,76 tỷ</h1>
+<p class="lede">Cộng dồn ba năm, doanh thu vượt kế hoạch 32,7 tỷ, còn kết quả thấp hơn kế hoạch lãi khoảng 25 tỷ. Phần lỗ nằm ở bốn thương hiệu F&amp;B và chi phí khối văn phòng. Đưa bốn thương hiệu này về hòa vốn hoặc dừng, và giảm 30% chi phí văn phòng, thì kết quả 9 tháng 2026 chuyển từ lỗ 2,95 tỷ sang lãi khoảng 1,56 tỷ.</p>
+
+<div class="kpis">
+  <div class="kpi"><b class="neg">−2,95 tỷ</b><span>Kết quả 9 tháng 2026</span><small>khoảng 327 tr mỗi tháng</small></div>
+  <div class="kpi"><b>133%</b><span>Doanh thu so kế hoạch</span><small>60,95 tỷ trong 9 tháng</small></div>
+  <div class="kpi"><b class="pos">+7,50 tỷ</b><span>Ba đơn vị có lãi</span><small>EPGA, Cây Cau, Pickleball</small></div>
+  <div class="kpi"><b class="neg">−2,43 tỷ</b><span>Bốn thương hiệu F&amp;B lỗ</span><small>Bonchon, Vị, Academy, Titach</small></div>
+  <div class="kpi"><b>11,4%</b><span>Chi phí khối văn phòng</span><small>6,92 tỷ trên doanh thu</small></div>
+</div>
+<p class="note"><span class="tag">Chưa xác nhận</span> Mọi con số lấy từ bản in báo cáo quản trị; các tổng cộng đã được tính lại và khớp, nhưng chưa đối chiếu với sổ ngân hàng hay chứng từ.</p>
+
+<section class="card">
+  <h2>Lãi, lỗ vận hành từng đơn vị, 9 tháng 2026</h2>
+  <div class="bars" id="bars"></div>
+  <p class="note">Tỷ đồng, trước khấu hao và phân bổ chi phí khối văn phòng. Khối văn phòng (chi phí 6,92 tỷ trừ thu nhập 1,56 tỷ) được phân bổ vào các đơn vị.</p>
+</section>
+
+<section class="card rec">
+  <h2>Đề xuất: phương án B</h2>
+  <p>Mỗi thương hiệu lỗ có 90 ngày để hòa vốn, không đạt thì dừng; khối văn phòng xây lại theo nhu cầu thật của các đơn vị; ba đơn vị có lãi giữ nguyên. Năm việc cần HĐQT quyết ở cuối trang, hai việc có hạn 10/12/2026.</p>
+</section>
+
+<section class="card">
+  <h2>Những gì đã làm được</h2>
+  <ul>
+    <li><b>Doanh thu vượt kế hoạch ba năm liền:</b> 101%, 128% và 133%.</li>
+    <li><b>Cây Cau có năm tốt nhất vào 2025:</b> lãi vận hành tăng 61%, từ 2,63 lên 4,24 tỷ.</li>
+    <li><b>EPGA ổn định:</b> lãi vận hành 3,9–4,4 tỷ mỗi năm, biên lợi nhuận tăng từ 11% lên 15%.</li>
+    <li><b>Sân Pickleball thành công ngay năm đầu:</b> lãi vận hành 1,94 tỷ trên 2,83 tỷ doanh thu năm 2025.</li>
+    <li><b>Công viên &amp; Sự kiện chuyển từ lỗ sang lãi:</b> từ lỗ 0,19 tỷ (2024) sang lãi 0,15 tỷ (9 tháng 2026).</li>
+    <li><b>Nộp ngân sách đều đặn:</b> 26,68 tỷ thuế và phí đã nộp trong ba năm.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Những điểm chưa ổn</h2>
+  <ul>
+    <li><b>Bonchon:</b> bốn cửa hàng, doanh thu 9 tháng 12,9 tỷ, nhưng chi phí bằng 112% doanh thu và cả bốn đều lỗ. Ba năm lỗ 9,34 tỷ sau phân bổ.</li>
+    <li><b>Vị Eatery và Academy Café:</b> lỗ vận hành ba năm liền.</li>
+    <li><b>Khối văn phòng không co theo doanh thu:</b> 11–13% doanh thu cả ba năm.</li>
+    <li><b>Chưa biết công ty còn bao nhiêu tiền:</b> chưa có bảng cân đối, số dư ngân hàng và danh sách công nợ.</li>
+  </ul>
+  <h3>Cần làm rõ sớm</h3>
+  <ul>
+    <li><b>6,36 tỷ không khớp</b> trong kết quả 2024 của mảng Kinh doanh (1,81 tỷ) và EPGA (4,55 tỷ).</li>
+    <li><b>Thuế 2026 khác thường:</b> nộp 518 tr thuế TNDN trong năm lỗ; phí, lệ phí 1,68 tỷ so với 0,39 tỷ năm 2025; thuế GTGT phải nộp bằng 10,6% doanh thu so với 4,6%. Cần hồ sơ quyết toán và biên bản thanh tra, kiểm tra nếu có.</li>
+    <li><b>293 tr thuế TNDN nộp thừa từ 2024</b> chưa được bù trừ.</li>
+    <li><b>Mảng Kinh doanh:</b> doanh thu từ 13,57 tỷ (2024) còn 4 tr (9 tháng 2026), chi phí vẫn phát sinh.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Những thay đổi cần thiết</h2>
+  <ol>
+    <li><b>Giữ tiền:</b> tạm dừng mở mới và đầu tư mới cho bốn thương hiệu lỗ cho tới khi có bảng cân đối và dự báo dòng tiền 13 tuần.</li>
+    <li><b>Mỗi thương hiệu lỗ một kế hoạch 90 ngày</b> (04/01–31/03/2027): hòa vốn hai tháng liên tiếp thì giữ, không đạt thì dừng từ tháng 4, cửa hàng yếu nhất trước.</li>
+    <li><b>Xây lại khối văn phòng</b> theo chức năng các đơn vị thật sự cần: 9% doanh thu vào giữa 2027, 8% cuối 2027.</li>
+    <li><b>Giữ nguyên ba đơn vị có lãi trong 90 ngày;</b> mỗi trưởng đơn vị có bảng chức năng, nhiệm vụ và KPI.</li>
+    <li><b>Báo cáo hằng tháng theo từng cửa hàng,</b> kèm tiền mặt, công nợ và thuế.</li>
+  </ol>
+</section>
+
+<section class="card">
+  <h2>Các phương án</h2>
+  <div class="scroll"><table class="stack">
+    <thead><tr><th>Phương án</th><th class="r">Kết quả 9 tháng</th><th>Đánh đổi</th></tr></thead>
+    <tbody>
+      <tr><td><b>A.</b> Giữ nguyên</td><td class="r neg">−2,95 tỷ</td><td>Không xáo trộn, nhưng lỗ tiếp tục, khoảng 3,9 tỷ mỗi năm</td></tr>
+      <tr><td><b>B.</b> Sửa hoặc dừng từng thương hiệu lỗ trong 90 ngày, xây lại khối văn phòng</td><td class="r pos">+1,56 tỷ</td><td>Cần thay đổi nhân sự và cách vận hành; chưa tính chi phí chấm dứt hợp đồng</td></tr>
+      <tr><td><b>C.</b> Dừng ngay bốn thương hiệu lỗ, giữ khối văn phòng</td><td class="r neg">−0,51 tỷ</td><td>Nhanh, nhưng mất 31,5% doanh thu và chi phí văn phòng dồn lên ba đơn vị có lãi</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note"><span class="tag e">Ước tính</span> Cùng cơ sở 9 tháng 2026. Giả định dừng một đơn vị thì mất đúng phần lỗ vận hành của nó; chi phí chấm dứt hợp đồng thuê, nhượng quyền và lao động chưa biết, sẽ tính khi có hợp đồng.</p>
+</section>
+
+<section class="card">
+  <h2>Các việc HĐQT cần quyết</h2>
+  <p>Năm việc, hai việc có hạn 10/12/2026.</p>
+  <div class="scroll"><table class="stack dec">
+    <thead><tr><th>#</th><th>Cần quyết</th><th>Đề xuất</th><th>Hạn</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Bổ nhiệm Giám đốc Điều hành kiêm Trưởng Ban Tái cấu trúc, ban hành nghị quyết và giấy ủy quyền</td><td>Đồng ý theo dự thảo kèm, sau khi luật sư rà soát</td><td class="hard">10/12/2026</td></tr>
+      <tr><td>2</td><td>Yêu cầu kế toán nộp bộ hồ sơ: bảng cân đối, sao kê, thuế, hợp đồng thuê và nhượng quyền</td><td>Đồng ý</td><td class="hard">10/12/2026</td></tr>
+      <tr><td>3</td><td>Tạm dừng đầu tư mới vào bốn thương hiệu lỗ</td><td>Đồng ý</td><td>Ngay</td></tr>
+      <tr><td>4</td><td>Chọn phương án và mốc 90 ngày</td><td>Phương án B</td><td>31/12/2026</td></tr>
+      <tr><td>5</td><td>Cấu trúc sở hữu: giữ pháp nhân hiện tại kèm cam kết bồi hoàn, hay pháp nhân mới</td><td>Quyết sau ý kiến luật sư và tư vấn thuế</td><td>31/03/2027</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Việc 1 là đề xuất bổ nhiệm chính người lập báo cáo; HĐQT nên xem xét việc này độc lập với các việc còn lại.</p>
+</section>
+
+<details>
+  <summary>Phụ lục: kế hoạch và thực hiện</summary>
+  <div class="scroll"><table>
+    <thead><tr><th>Năm</th><th class="r">Doanh thu KH</th><th class="r">Doanh thu TH</th><th class="r">Đạt</th><th class="r">Kết quả KH</th><th class="r">Kết quả TH</th></tr></thead>
+    <tbody>
+      <tr><td>2024</td><td class="r">72,90</td><td class="r">73,37</td><td class="r">101%</td><td class="r">5,11</td><td class="r neg">(3,09)</td></tr>
+      <tr><td>2025</td><td class="r">62,38</td><td class="r">79,60</td><td class="r">128%</td><td class="r">6,30</td><td class="r neg">(2,73)</td></tr>
+      <tr><td>9 tháng 2026</td><td class="r">45,95</td><td class="r">60,95</td><td class="r">133%</td><td class="r">4,92</td><td class="r neg">(2,95)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Tỷ đồng. <span class="tag">Chưa xác nhận</span> Kế hoạch lãi ba năm in trên báo cáo là 16,64 tỷ; cộng ba năm ra 16,32 tỷ. Cần kế toán giải thích.</p>
+</details>
+
+<details>
+  <summary>Phụ lục: thuế và các khoản phải nộp tại 30/09/2026</summary>
+  <div class="scroll"><table>
+    <thead><tr><th>Khoản</th><th class="r">Phải nộp 9 tháng</th><th class="r">Đã nộp</th><th class="r">Còn phải nộp</th></tr></thead>
+    <tbody>
+      <tr><td>Thuế GTGT</td><td class="r">6.488,9</td><td class="r">6.407,7</td><td class="r">649,6</td></tr>
+      <tr><td>Thuế tiêu thụ đặc biệt</td><td class="r">1.925,0</td><td class="r">1.795,1</td><td class="r">281,1</td></tr>
+      <tr><td>Thuế TNDN</td><td class="r">518,3</td><td class="r">518,3</td><td class="r">0</td></tr>
+      <tr><td>Thuế TNCN</td><td class="r">1.244,4</td><td class="r">1.405,1</td><td class="r">36,9</td></tr>
+      <tr><td>Phí, lệ phí</td><td class="r">1.684,9</td><td class="r">1.684,9</td><td class="r">0</td></tr>
+      <tr><td><b>Cộng</b></td><td class="r"><b>11.861,5</b></td><td class="r"><b>11.811,2</b></td><td class="r"><b>967,7</b></td></tr>
+      <tr><td>Trừ thuế TNDN nộp thừa từ 2024</td><td class="r"></td><td class="r"></td><td class="r">(293,2)</td></tr>
+      <tr><td><b>Còn phải nộp ròng</b></td><td class="r"></td><td class="r"></td><td class="r"><b>674,5</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Triệu đồng. <span class="tag">Chưa xác nhận</span></p>
+</details>
+
+<footer>Báo cáo nội bộ. Các nội dung về pháp lý, thuế và lao động cần luật sư và kế toán trưởng xác nhận trước khi thực hiện.</footer>
+</main>
+
+<script>
+{
+  const units=[["EPGA",4.09],["Cây Cau",2.53],["Pickleball",0.88],["Công viên & Sự kiện",0.15],["Titach",-0.01],["Academy Café",-0.28],["Vị Eatery",-0.59],["Bonchon",-1.56]];
+  const lo=-2,hi=4.5,span=hi-lo,zero=(0-lo)/span*100;
+  const fmt=v=>(v<0?"−":"+")+Math.abs(v).toFixed(2).replace(".",",");
+  const el=document.getElementById("bars");
+  el.innerHTML=units.map(([n,v])=>{
+    const w=Math.abs(v)/span*100,left=v<0?zero-w:zero;
+    const c=v<0?"var(--rfill)":"var(--gfill)",cls=v<0?"neg":"pos";
+    return '<div class="row"><span class="n">'+n.replace(/&/g,"&amp;")+'</span><span class="track"><span class="axis" style="left:'+zero+'%"></span><span class="bar" style="left:'+left+'%;width:'+Math.max(w,0.6)+'%;background:'+c+'"></span></span><span class="v '+cls+'">'+fmt(v)+'</span></div>';
+  }).join("");
+}
+</script>
+</body>
+</html>
